@@ -1,0 +1,52 @@
+%%---------------------------"page width" for comments (97 columns)----------------------------%%
+%%3456789112345678921234567893123456789412345678|5123456789612345678971234567898123456789912345%%
+%% WMU-compliant thesis template by Jon Lighthall
+\documentclass[phd,abstract,ackno,listfig,listtab,oneside,openany,orig]{wmu/wmu-thesis}
+%\includeonly{More_Files/list}
+\input{first}    %% Author, title, and date information
+%\input{packages} %% Load packages
+\input{src/packages}
+\input{thesis_packages}
+%\input{layout}   %% Optional layout commands
+\begin{document}
+%Document formatting commands----------
+%\pagestyle{headings}
+%\VerbatimFootnotes
+%\linenumbers
+%Files to include----------------------
+%\input{front_matter}
+%\renewcommand{\tocspace}{1.667}
+%\renewcommand{\tocspace}{1.55}
+\frontmatter
+%\include{test_page}
+%\input{test_text}
+\mainmatter
+%\pagestyle{headings}
+%\twocolumn %% Turn two column format on/off, also must include [twocolumn] option
+%\protect\setcounter{tocdepth}{0}
+\part{Scientific Motivation}
+%\protect\setcounter{tocdepth}{-1}
+\include{Motivation}%Introduction
+%\include{r-process}
+\include{Reactions}
+\part{Experimental Techniques}
+\include{Kinematics}
+%\include{Beams}
+\include{Standard}
+\include{HELIOS_Concept}
+\part{Technical Description}
+\label{tech_desc}
+\include{Solenoid}
+\include{Array}
+\include{Electronics}
+\include{Calibration}
+\include{recoil_detectors}
+\include{Fan}
+\include{Simulations}
+\part{Commissioning Experiments}
+\include{Commissioning_Experiment}
+\include{RIB_Commissioning}
+\include{Conclusions}
+%\include{Thesis_Proposal}
+\input{back_matter}
+\end{document}
