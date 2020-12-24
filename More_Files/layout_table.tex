@@ -1,0 +1,46 @@
+\pagebreak
+\thispagestyle{empty}
+\subsubsection*{Layout Variables}
+Listed below are the \LaTeX{} page layout dimensions with their current values.  A \textit{pt}, as used in \LaTeX{}, is equivalent to 1/72.27\,in.  For example, an $8.5\textrm{\,in} \times 11\textrm{\,in}$ sheet of paper is $614.295pt \times 794.97pt$.  The default values for one-sided and two-sided layouts in the book document class with 10\textit{pt} front are given (the two-sided layout being the default).  Also included are the font families in use.
+\begin{table}[h]%
+\renewcommand{\arraystretch}{1.0} % set array line spacing
+\setlength{\tabcolsep}{2} % set array column separation
+\begin{center}
+\begin{tabular}{rd{3.6}d{3.6}d{3.6}}
+\multicolumn{1}{r}{Quantity}&\multicolumn{1}{c}{Value}&\multicolumn{2}{c}{Default}\\
+	&&\multicolumn{1}{c}{\texttt{oneside}}&\multicolumn{1}{c}{\texttt{twoside}}\\\hline\hline
+  \verb|\hoffset|&\the\hoffset&0.0pt&0.0pt\\
+  \verb|\voffset|&\the\voffset&0.0pt&0.0pt\\
+  \verb|\oddsidemargin|&\the\oddsidemargin&62.0pt&35.0pt\\
+  \verb|\evensidemargin|&\the\evensidemargin&62.0pt&89.0pt\\\hline
+  \verb|\topmargin|&\the\topmargin&22.0pt&22.0pt\\
+  \verb|\headheight|&\the\headheight&12.0pt&12.0pt\\
+  \verb|\headsep|&\the\headsep&18.06749pt&18.06749pt\\\hline
+  \verb|\textheight|&\the\textheight&550.0pt&550.0pt\\
+  \verb|\textwidth|&\the\textwidth&345.0pt&345.0pt\\
+  \verb|\linewidth|&\the\linewidth&&\\
+  \verb|\columnwidth|&\the\columnwidth &&\\ 
+  \verb|\columnsep|&\the\columnsep &&\\
+  \hline
+  \verb|\marginparsep|&\the\marginparsep&7.0pt&7.0pt\\
+  \verb|\marginparwidth|&\the\marginparwidth&69.0pt&125.0pt\\
+  \verb|\footskip|&\the\footskip&25.29494pt&25.29494pt\\
+  \verb|\marginparpush|&\the\marginparpush&5.0pt&5.0pt\\\hline
+  \verb|\paperwidth|&\the\paperwidth&614.295pt&614.295pt\\
+  \verb|\paperheight|&\the\paperheight&794.96999pt&794.96999pt\\\hline
+  \verb|\rmdefault| & \multicolumn{1}{c}{\textrm{\rmdefault}}&\multicolumn{1}{c}{\textrm{cmr}}&\multicolumn{1}{c}{\textrm{cmr}}\\
+	\verb|\sfdefault| & \multicolumn{1}{c}{\textsf{\sfdefault}}&\multicolumn{1}{c}{\textsf{cmss}}&\multicolumn{1}{c}{\textsf{cmss}}\\
+	\verb|\ttdefault| & \multicolumn{1}{c}{\texttt{\ttdefault}}&\multicolumn{1}{c}{\texttt{cmtt}}&\multicolumn{1}{c}{\texttt{cmtt}}\\
+%	\verb|\baselineskip|&\the\baselineskip &&\\
+%	\verb|\baselinestretch|&\value\baselinestretch &&\\
+%	\verb|\parindent|&\the\parindent &&\\
+%	\verb|\parskip|&\the\parskip &&\\
+%	\verb|\tabcolsep|&\value\tabcolsep &&\\
+%	\verb|\unitlength|&\the\unitlength &&\\
+	
+	%\multicolumn{1}{l}{\hspace*{0.15\textwidth}}&\multicolumn{1}{l}{\hspace*{0.15\textwidth}}
+	%\hline
+	%\verb|\leftskip|&\the\leftskip
+\end{tabular}
+\end{center}
+\end{table}
