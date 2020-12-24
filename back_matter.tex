@@ -1,0 +1,39 @@
+%% References--------------------%-------------------------------
+\renewcommand{\bibname}{References}%Set the name of the bibliography here
+\bibliographystyle{src/elsarticle-aps}
+\cleardoublepage
+\phantomsection %Ordering here is important; place this line before calling \bibliography{}...
+\bibliography{src/bib_link}
+\addcontentsline{toc}{chapter}{\texorpdfstring{\uppercase{\bibname}}{\bibname}}%...and place this line after calling \bibliography{}
+\input{colophon}
+\twoappendix
+%\input{More_Files/Field_Map_Data} %full field map
+\input{Field_Map_Data2} %averaged field map
+%\backmatter
+
+\include{More_Files/addendum}
+\include{More_Files/foreword}
+\include{More_Files/list}
+\input{More_Files/sim_guide}
+%\input{More_Files/excel_guide}
+%\input{More_Files/cal_guide}
+%\input{More_Files/code_guide}
+\input{More_Files/bad_ang}
+
+%\thispagestyle{plain}
+%\chapter{Appellative Conventions}
+%\begin{tabular}{ccl}
+%Symbol&Units&Meaning\\ \hline
+%$\mathscr{B}$&T&Magnetic field magnitude\\
+%$\mathscr{B}_0$&T&Central field\\
+%\end{tabular}
+
+%% Index-------------------------%-------------------------------
+%\cleardoublepage
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\indexname}
+%\printindex
+\input{src/time_stamp}
+%\include{More_Files/errata}
+
+\input{More_Files/layout_table}
