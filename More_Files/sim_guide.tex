@@ -1,0 +1,352 @@
+\makeatletter%
+\def\@xobeysp{ }%replaces the unbreakable space used in verbatim environments with a regular space
+\makeatother%
+\renewcommand{\arraystretch}{1} % set array line spacing
+\sloppy%
+\chapter[Simulations Manual]{HELIOS Simulations Users Manual}
+\label{sim_man}
+\newcommand{\subtitle}[1]{\vspace*{-2.0\baselineskip}%Chapter subtitle (one line only)
+	\noindent\large\textbf{#1}%
+	\normalsize\vspace{1.0\baselineskip}} 
+	
+	\newcommand{\subtitleb}[1]{\vspace*{-2.5\baselineskip}%Chapter subtitle with section font (one line only)
+	\section*{#1}
+	\normalsize\vspace{0.5\baselineskip}}
+\subtitleb{For ``Version 3.0''}
+
+%\title{HELIOS Simulations Users Manual\\For ``Version 3.0''}\author{Written by Jack Winkelbauer\footnote{ \href{mailto:winkelba@nscl.msu.edu}{winkelba@nscl.msu.edu}, (248) 561-3229}\\Ported to \LaTeX{} and updated by Jon Lighthall\footnote{ \href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}, (248) 797-3674}}
+
+This guide to the \texttt{C++} HELIOS simulations was originally written by Jack Winkelbauer\footnote{ \href{mailto:winkelba@nscl.msu.edu}{winkelba@nscl.msu.edu}, (248) 561-3229} and was later ported to \LaTeX{} and updated by the author.%Jon Lighthall.
+\footnote{\sout{\href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu}, (248) 797-3674} \href{mailto:lighthall@triumf.ca}{lighthall@triumf.ca}, (778) 999-6006} The contents of the simulation are located in the file \texttt{helios\_sims\_3.0.tar}.  The contents of the ``tarball'' are extracted with the following command.
+\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}#1}% "$" command prompt
+%\renewcommand{\FancyVerbFormatLine}[1]{root [\arabic{FancyVerbLine}] #1}% ROOT-like command prompt
+\begin{quote}
+\begin{Verbatim}
+tar -xvf helios_sims_3.0.tar
+\end{Verbatim}
+\end{quote}
+Here and throughout this guide, a {\color{green}\texttt{\$}} denotes a command prompt in a Linux-like operating system and typewriter type face represents user-input text.
+\section*{Structure}
+There are three separate programs that are run in producing a simulation: one that generates the initial particle kinematics; one that tracks these particles through the spectrometer; and one that creates histograms for viewing.  The following three sections each deal with an individual program in the simulation. 
+\section{Kinematics Program}
+\subsection{Compiling}
+The code that generates the initial kinematics data is \verb|kin2mc_tgt.cpp|\\
+This program must be compiled with the following command: 
+%\renewcommand{\FancyVerbFormatLine}[1]{{\$ }#1}% "$" command prompt
+\begin{quote}
+\texttt{{\color{green}\$} g++ -include masstable.cpp -include sample.cpp -include vector3.cpp -include nucleus3.cpp -include reaction4.cpp kin2mc.tgt.cpp -o kin2mc\_tgt -Wno-deprecated}
+\end{quote}
+This is the content of the text file \verb|buildkin2mc_tgt|, which can be executed with the command
+\begin{quote}
+\begin{Verbatim}
+./buildkin2mc_tgt
+\end{Verbatim}
+\end{quote}
+The resulting program is \verb|kin2mc_tgt|.  In order to compile this program using Cygwin, a C++ compiler is needed; the \texttt{gcc-g++} package, along with its dependencies, must be included in the Cygwin installation. %to compile this program.
+
+%\pagebreak
+\subsection{Kinematics Input}
+\label{kin_out}
+The program \texttt{kin2mc\_tgt} creates a specified number of events with a specified angular distribution (default is uniform in theta).   To run the program, enter the command: 
+\begin{quote}
+\texttt{{\color{green}\$} ./kin2mc\_tgt} (Linux) \\
+\texttt{{\color{green}\$} ./kin2mc\_tgt.exe} (Cygwin)
+\end{quote}
+%\newpage
+This program has a root menu, detailed below, from which all the parameters are set.
+\vspace{-1.0\baselineskip}
+\begin{singlespace}
+\begin{enumerate}
+\setlength{\itemsep}{0pt}	
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+\addtocounter{enumi}{-1}	
+	\item \textsf{Print Info} - Shows current reaction parameters
+	\item \textsf{Enter Reaction} - Enter the reaction of interest in standard reaction notation. For example \texttt{28Si(d,p)} is standard kinematics and \texttt{d(28Si,p)} is inverse kinematics.  Note that the heavy recoil is not necessarily shown. Note that the program recognizes common symbols like \texttt{d} for \texttt{2H} and \texttt{p} for \texttt{1H}.
+	\item \textsf{Change one particle} - This option lets you change one particle in the reaction without rewriting the entire reaction.
+	\item \textsf{Enter beam energy} - Enter the total beam energy in MeV.
+	\item \textsf{Enter excitation energies} - Enter the excitation energy of each particle in the final state in MeV. 
+		\begin{itemize}
+			\setlength{\itemsep}{0pt}
+  		\setlength{\parskip}{0pt}
+  		\setlength{\parsep}{0pt}
+			\item \textsf{Enter Ex(ejectile)} - Typically 0\,MeV for light ions (since most are lightly-bound).
+			\item \textsf{Enter Ex(heavy recoil)} - The excited state to study.
+		\end{itemize}
+	\item \textsf{Enter ejectile angles} - Enter the range of (laboratory) angles for which the program will emit light particles in the laboratory using standard spherical coordinates ($r,\theta,\phi$), with beam the velocity in the $+z$-direction.)
+		\begin{itemize}
+			\setlength{\itemsep}{0pt}
+  		\setlength{\parskip}{0pt}
+  		\setlength{\parsep}{0pt}
+			\item \textsf{Enter Theta} - Default value is 0--180$^\circ$.  $\theta_\mathrm{lab}=0^\circ$ is forward, and $\theta_\mathrm{lab}=180^\circ$ is backward. If $\theta_{min}<170^\circ$, it will produce an artificial cutoff at low energy in the region of the ``knees.''
+			\item \textsf{Enter Phi} - Default value is 0--360$^\circ$.
+			\item \textsf{Lookup angular distribution profile?} - To use an angular distribution, the distribution must be saved as \texttt{profile.dat}.
+		\end{itemize}
+	\item \textsf{Do calculation} - This command actually creates the events. Enter the number of events for that specific reaction and excitation energy. For multiple reactions or excitation energies, just ``Do Calculation'' and then change the parameters and ``Do Calculation'' again, and the program will append the events each time.
+		\begin{itemize}
+			\setlength{\itemsep}{0pt}
+  		\setlength{\parskip}{0pt}
+  		\setlength{\parsep}{0pt}
+			\item \textsf{Enter number of events} - This is value is typically entered in steps of 1,000.
+			\item \textsf{Enter target thickness in microns} - For 0.93\,g/cm$^3$ CH$_2$ $t$($\mu$m)$=.01075\times t$($\mu$g/cm$^2$). Note CD$_2$ has a nominal density of 1.06\,g/cm$^3$.
+			\item \textsf{Do you want to include target effects (0=no, 1=yes)}- If you select 1 to include target effects, the output will include an approximated charge state distribution for the heavy recoil, and the calculation will include the beam's energy loss in the target, and gives the interaction depth in the target as an output also. (For HELIOS you \textit{must} use target effects, because it changes the output format.)
+		\end{itemize}
+ After generating events, the program returns to the menu so that you can either add more events with different parameters, or you can quit.
+\item \textsf{Choose Solution (+:0, -:1)} - The upper solution is default.  For many reactions the kinematics are double valued, so you have to specify which solution.  Typically, the lower solution is the one of interest in double-valued kinematics.  For single-valued solutions the upper solution should be selected.
+\item \textsf{Print options} - Not applicable.
+\item \textsf{Exit} - Closes program and output file. Make sure that you rename the output file at some point.
+\end{enumerate}
+\end{singlespace}
+\subsection{Kinematics Output}
+The output file is by default called \texttt{kin2mc\_tgt.out}, but you should change this to something meaningful so it does not get overwritten. 
+The format for the output file is one event per line with nine elements per line: 
+
+\begin{center}
+\begin{tabular}{|c|c|c|c||c|c|c|c||c|}
+\hline
+\multicolumn{4}{|c||}{Ejectile}&\multicolumn{4}{c||}{Heavy Recoil}&\\\hline
+$E$&$\theta_\mathrm{lab}$&$\phi_\mathrm{lab}$&$\theta_\mathrm{cm}$&$E$&$\theta_\mathrm{lab}$&$\phi_\mathrm{lab}$&$q$&Depth\\\hline
+\end{tabular}
+\end{center}
+where the energy $E$ is in MeV, the angles are measured in degrees, the charge state $q$ is in units of $e$, and the target depth is in $\mu$m.
+
+\section{Simulation}
+\subsection{Compiling}
+The code that generates the initial kinematics data is \texttt{HELIOSSim.cpp}.  The program must be compiled with the following command: 
+\begin{quote}
+\texttt{{\color{green}\$} g++ -g -include sample.cpp -include vector3.cpp -include detector.cpp -include HELIOSArray.cpp -include recoildetector.cpp -include HELIOS.cpp -include target.cpp HELIOSSim.cpp -o HELIOSSim -Wno-deprecated}
+\end{quote} which is the content of the executable text file \texttt{buildHELIOSSim} which can be executed with the command
+\begin{quote}
+\begin{Verbatim}
+./buildHELIOSSim
+\end{Verbatim}
+\end{quote}
+The resulting program is \texttt{HELIOSSim}.
+
+\subsection{Simulation Input}
+The program \texttt{HELIOSSim} takes the initial kinematics and tracks the particles out of the target, through the solenoid volume, and into the detector.  The inputs to this program are primarily geometric, so most of them stay the same from run to run.  The program is run with command
+\begin{quote}
+\texttt{{\color{green}\$} ./HELIOSSim kin2mc\_tgt.out name\_of\_output\_file.dat} (Linux) \\
+\texttt{{\color{green}\$} ./HELIOSSim.exe kin2mc\_tgt.out name\_of\_output\_file.dat} (Cygwin)
+\end{quote} Note that you are making up the second filename at this point and the name of the first file should match the output file produced in \S\,\ref{kin_out}.  The program will prompt the user for a number of parameters, detailed below.
+\vspace{-1.0\baselineskip}
+\begin{singlespace}
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+	\item \textsf{Enter number of events to process} - If you want to process them all, enter -1. Keep in mind that if you have a set of inputs that correspond to several excited states, it processes them in order. For example, if you generate 20,000 events, 10,000 per excitation energy, and you choose to process 10,000 events, you will only process the first excited state.
+	\item \textsf{Do you want to use a default scenario} -  This is simply a matter of preference. You can read in the parameters from the file \texttt{heliosparameters.dat} or you can type them in one by one. Most of them don't change, so it is much easier to just read them in. After this option, the program outputs parameters for all the elements of the array. In general, write down the central z values given for each detector, because the analysis file needs those numbers.
+	\item List of parameter variable names and descriptions:
+		\begin{enumerate}
+		\setlength{\itemsep}{0pt}
+  	\setlength{\parskip}{0pt}
+  	\setlength{\parsep}{0pt}
+		\addtocounter{enumi}{-1}	
+			\item \textsf{beamdx} - horizontal size of the beam spot. Beam spot is simulated as a square with a uniform distribution.
+			\item \textsf{beamdy} - vertical size of the beamspot.
+			\item \textsf{length} - length of the solenoid volume (~2350 mm)
+			\item \textsf{radius} - radius of the solenoid volume (~450 mm)
+			\item \textsf{usemap} - integer value that tells which field profile to use.
+				\begin{enumerate}
+					\setlength{\itemsep}{0pt}
+  				\setlength{\parskip}{0pt}
+  				\setlength{\parsep}{0pt}
+					\item uniform field = b0
+					\item field from some magnet, scaled to b0 in the center.
+					\item actual measured field, scaled to b0 in the center.
+				\end{enumerate}
+			\item \textsf{b0} - central value of the magnetic field, entire field is scaled proportionately. 
+			\item \textsf{ztgt} - the position (in mm) of the target. 
+			\item \textsf{thickness} -  areal density of target (in $\mu$g/cm$^2$)
+			\item \textsf{recoildetz} - the position (in mm) of the QQQ recoil detector assembly.
+			\item \textsf{recoildetres} - the energy resolution (in keV) of the recoil detectors.
+			\item \textsf{recoildetDphi} - the angular offset of the recoil detector array
+			\item \textsf{dx} - the active width of the PSD's
+			\item \textsf{dz} - the active length of the PSD's
+			\item \textsf{arraydx} - the width of the detector array (not just the detector).
+			\item \textsf{firstz} - position of the front edge of first detector (in mm).
+			\item \textsf{resolution} - this is the energy resolution (sigma, in MeV) of the PSD's
+			\item \textsf{sigmat} - PSD time resolution (in ns)
+			\item \textsf{nposition} - number of longitudinal (z) detector positions on the array (6 for now)
+			\item \textsf{detseparation} - separation between active area on detectors (in mm)
+			\item \textsf{direction} -  
+				\begin{itemize}
+					\setlength{\itemsep}{0pt}
+  				\setlength{\parskip}{0pt}
+  				\setlength{\parsep}{0pt}
+					\item (-1) for backward hemisphere
+					\item (+1) for forward hemisphere
+				\end{itemize}
+			\item \textsf{deltat\_ns} -  timestep for tracking (in ns, 0.02 is standard)
+			\item \textsf{UseChargeDist} - whether or not to use an approximated charge state distribution for the heavy recoil. Apparently not a good approximation for z<20.
+				\begin{itemize}
+					\setlength{\itemsep}{0pt}
+  				\setlength{\parskip}{0pt}
+  				\setlength{\parsep}{0pt}
+					\item (0) for no
+					\item (1) for yes
+				\end{itemize}
+			\item \textsf{dxoff} - horizontal offset (in mm) of the magnetic axis from the beam line.
+			\item \textsf{dyoff} - vertical offset (in mm) of the magnetic axis from the beam line.
+			\item \textsf{Zoffset} - this is the distance from the edge of the array tube to the first silicon strip. This tells the program how much dead area is in front of the detectors which stops some of the multiple orbits.
+		\end{enumerate}
+	\item The next prompt asks if you want to use the prototype array. This uses the actual measured z positions of the array. (Still uses the other parameters; dx,dy, etc.)
+	\item At this point, all that is left to input is the A and Z for both particles, and the program will begin tracking. The console output keeps you updated of the particles detected by the array and the recoil detector, and how many were detected in coincidence.
+\end{itemize}
+\end{singlespace}
+
+\subsection{Simulation Output}
+The output depends on whether a particle was detected. For each event, the first five lines contain the same information, related to the trajectory of the light nucleus.  Next, the two blue lines appear if the light nucleus was detected.  Then the following two lines describe the trajectory of the heavy nucleus and the magenta line appears if the heavy nucleus is detected. Each event has a \texttt{-1} to denote the end of the event.\\
+
+\begin{table}[ht]%
+\centering
+\begin{tabular}{l|c|c|c|c|c|c|c}
+Initial Trajectory&$E_1$&	$\theta_1$&$\phi_1$&$E_2$&$\theta_2$&$\phi_2$&	$\theta_\mathrm{cm}$\\\hline
+After target effects&$E_1$&	$\theta_1$&$\phi_1$&$E_2$&$\theta_2$&$\phi_2$&depth\\\hline
+Final data&	$X_f$&	$Y_f$	&$Z_f$&	$V_{x,f}$&$	V_{y,f}$	&$V_{z,f}$	\\\hline
+Status&	Errorcode1						&&&&&&\\\hline
+{\color{blue}Array data}&	Det. ID	&E&$X_1$&$X_2$&&&\\\hline
+{\color{blue}Detected data} &	t&	z				&&&&&\\\hline	
+Final data&$X_f$&$Y_f$&$Z_f$&$V_x$&$V_y$&$V_z$&\\\hline
+Status&Errorcode2&&&&&&\\\hline
+{\color{magenta}Detected data}&$E_2$&$R_2$&$\Phi_2$&	Det. ID&	Charge State		&&\\\hline
+\end{tabular}
+\end{table}
+The ``errorcodes'' listed below describe what happened to the particle.  Note that significant amounts of errorcodes 1,5, or 6 indicate something is wrong with the simulation. 
+\vspace{-1.0\baselineskip}
+\begin{singlespace}
+\begin{enumerate}
+	\addtocounter{enumi}{-1}
+	\setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+	\item Detected by the array (light nuclei only)
+	\item	``Bad field status''
+	\item Exited end of solenoid 
+	\item Hit wall (radial wall)
+	\item (light particle) Not detected. Came back to axis, but did not hit a detector
+	\item Max steps reached 
+	\item Particle had negative energy (problem with target effects)
+	\item Detected by recoil detector (for heavy nuclei only) 
+\end{enumerate}
+\end{singlespace}
+
+\section{Analysis}
+A standard analysis file \texttt{HELIOS28Si.cxx} is included in the tarball.  Lines 268--279 are related to the reaction being studied and should be modified for different cases.  Lines 44--50 are related to ranges of the histograms and should also be modified as necessary.  A brief summary of useful commands follows.  Commands preceded by {\color{blue}\texttt{root [$\emptyset$]}} denote entries at the command prompt in ROOT.  
+
+%\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}#1}% "$" command prompt
+\begin{itemize}
+	\setlength{\itemsep}{0pt}	
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+	\item To view the simulated data, %follow these steps
+first open ROOT with the command
+\begin{quote}
+\begin{Verbatim}
+root -l
+\end{Verbatim}
+\end{quote}
+\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [$\emptyset$] }#1}% ROOT-like command
+	\item 	Load the analysis file \texttt{HELIOSxxx.cxx} (you fill in xxx for your modified file) with the command 
+\begin{quote}
+\begin{Verbatim}
+.L HELIOSxxx.cxx
+\end{Verbatim}
+\end{quote}
+	\item
+	 To make the histograms already defined in the analysis file, use the command
+	\begin{quote}
+\begin{Verbatim}
+makehists()
+\end{Verbatim}
+\end{quote}
+	 This command may be called in \texttt{rootlogon.C} file. Standard histograms such as the $E$ vs $Z$ spectrum %(\texttt{hEZ}) 
+	 will be made.  Refer to the analysis code to see what all these histograms are.
+	 \item To see a list of histograms use the command 
+	\begin{quote}
+\begin{Verbatim}
+.ls
+\end{Verbatim}
+\end{quote}
+	\item Sort the analyzed data into a ``tree'' with the command
+	\begin{quote}
+\begin{Verbatim}
+ filltree("name_of_output_file.dat", "tree_name")
+\end{Verbatim}
+\end{quote}
+where the name for the tree and the filenames are enclosed in quotations.
+	\item
+	 The histograms are filled with the command
+		\begin{quote}
+\begin{Verbatim}
+ analyze("tree_name")
+\end{Verbatim}
+\end{quote}  	
+	\item
+	 After the tree has been filled, histograms can be draw using the command
+	\begin{quote}
+\begin{Verbatim}
+ tree->Draw(...)
+\end{Verbatim}
+\end{quote}  	
+	\end{itemize}
+
+
+\subsection{Histograms}
+
+\subsection{Tracks}
+a.	If you uncomment the command \texttt{helios.TrackOn();} on line 40 of \texttt{HELIOSSim.cpp}, the program will write the tracking data for both particles to the files \texttt{lighttrack.dat} and \texttt{heavytrack.dat}. CAUTION: do not run more than a few particles with this option on, it writes an outrageous amount of data.
+\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [$\emptyset$] }#1}% ROOT-like command
+To analyze open ROOT and load the file \texttt{track.cxx} 
+		\begin{quote}
+\begin{Verbatim}
+ .L track.cxx
+\end{Verbatim}
+\end{quote}  
+The commands 	 \texttt{filltrack(heavytrack)} or \texttt{filltrack(lighttrack)} puts the tracks into the histogram \texttt{hTrack}, which is 3-dimensional. 
+
+\section{Sample}
+The file \texttt{b12\_d\_p\_sample.out} is a sample kinematics file. It is for the $d$($^{12}$B,$p$)$^{13}$B reaction,  and has the two states of interest at $E_x(^{13}\textrm{B})=3.4828$ and 3.6810\,MeV. There are 10,000 events for each state, emitted from $\theta_\mathrm{lab}=95^\circ$--180$^\circ$, with a beam energy of 6\,MeV/$u$. The target thickness is 100\,$\mu$g/cm$^2$. 
+
+The file \texttt{b12\_d\_p\_sample.dat} is a sample simulation output. This was run with the parameters as is in the file \texttt{heliosparameters.dat}. This is a mockup of the run in March 2008. This uses the prototype array geometry.
+
+The file \texttt{HELIOS12B.cxx} is a sample root analysis file, that corresponds with all the parameters in the sample files. \\
+%\pagebreak
+\subsection{HELIOS Parameters}
+Given below are examples of parameters for the file \texttt{heliosparameters.dat}.
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\begin{table}[hb]%
+\label{sim_params}
+\centering
+\begin{tabular}{rl|c|c}
+	 Index&Parameter&$^{12}$B&$^{28}$Si\\\hline%
+	 0&\texttt{beamdx}&2.50&0\\
+	 1&\texttt{beamdy}&2.50&0\\
+	 2&\texttt{length}&2350&{\color{red}2347}\\
+	 3&\texttt{radius}&450&{\color{red}462}\\
+	 4&\texttt{usemap}&2&2\\
+	 5&\texttt{b0}&1.0424&2.0020\\
+	 6&\texttt{ztgt}&0&0\\
+	 7&\texttt{thickness}&74&84\\
+	 8&\texttt{recoildetz}&{\color{red}1019}&-\\
+	 9&\texttt{recoildetres}&0&-\\
+	10&\texttt{recoildetDphi}&15&-\\
+	11&\texttt{dx}&10&{\color{red}9}\\
+	12&\texttt{dz}&50&{\color{red}50.5}\\
+	13&\texttt{arraydx}&20&{\color{red}22.733}\\
+	14&\texttt{firstz}&-368.7&-94.25\\
+	15&\texttt{resolution}&0.026&0.0212\\
+	16&\texttt{sigmat}&0.6&0.25\\
+	17&\texttt{nposition}&{\color{red}6}&6\\
+	18&\texttt{detseparation}&10&7.88\\
+	19&\texttt{direction}&-1&-1\\
+	20&\texttt{deltat\_ns}&0.02&0.02\\
+	21&\texttt{UseChargeDist}&0&0\\
+	22&\texttt{dxoff}&0&0\\
+	23&\texttt{dyoff}&0&0\\
+	24&\texttt{Zoffset}&41.76&{\color{red}41.42}\\
+\end{tabular}
+\caption[Example parameters for the HELIOS simulation.]{Example parameters for the HELIOS simulation.  Items in {\color{red}red} are physical constants of the array and solenoid and do not need to be changed.  The values corresponding to $^{12}$B are those found in the example in the tarball.  The values corresponding to $^{28}$Si are those used in the simulations appearing in Ref.~\cite{Lighthall_2010}.}
+\end{table}
