@@ -1,0 +1,38 @@
+\cleardoublepage
+%\thispagestyle{plain}
+%\setcounter{secnumdepth}{-1} 
+%\chapter[\texorpdfstring{APPENDIX}{Appendix}]{Field Map}
+\chapter{Field Map}
+%\addcontentsline{toc}{chapter}{\texorpdfstring{APPENDIX}{Appendix}}
+\label{field_map_data}
+\renewcommand{\arraystretch}{0.8} % set array line spacing
+\renewcommand{\tabcolsep}{1.9mm} % set array column separation
+\begin{table}[ht]
+\centering
+\begin{tabular}{r|d{1}d{1}d{1}d{1}d{1}d{1}d{1}d{1}d{1}d{1}}
+\hline
+\multicolumn{1}{c|}{\multirow{2}{*}{$z$}} &\multicolumn{10}{c}{$\rho$}\\ %\cline{2-11}
+
+\input{Axial-Field.txt}
+\hline
+\end{tabular}
+\caption{Average axial field strength $\mathscr{B}_z$ of the HELIOS solenoid in gauss. }
+\label{axial_field}
+\end{table}
+
+\begin{table}[t]
+\centering
+\begin{tabular}{r|d{1}d{1}d{1}d{1}d{1}d{1}d{1}d{1}d{1}d{1}}
+\hline
+\multicolumn{1}{c|}{\multirow{2}{*}{$z$}} &\multicolumn{10}{c}{$\rho$}\\ %\cline{2-11}
+\input{Radial-Field.txt}
+\hline
+\end{tabular}
+\caption{Average radial field strength $\mathscr{B}_\rho$ of the HELIOS solenoid in gauss.}
+\label{radial_field}
+\end{table}
+
+The field values presented in this appendix represent the interpolated field map matrix used in the simulations.  It is based on the 21,240 point field map discussed in Chapt.~\ref{solenoid}.  For each combination of ($z$,$\rho$) in the original field map, the azimuthal variations in the measured field have been averaged.  The value of the magnetic field at fixed intervals of $\Delta z=5$\,cm are interpolated from the azimuthally-averaged values in a manner similar to the fit shown in Fig.~\ref{map}.
+
+%\thispagestyle{myheadings}
+%\markright{APPENDIX FIELD MAP}
