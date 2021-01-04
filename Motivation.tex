@@ -1,0 +1,47 @@
+\chapter{Theoretical Motivation}
+
+\section{Nuclear Shell Model}
+\label{sec:shell}
+One of the greatest achievements of nuclear physics was the development of the nuclear shell model by \citet{Goeppert-Mayer_1950} and Jensen \textit{et al.}~\cite{Haxel_1949} which ultimately earned them the Nobel Prize in 1963.  In analogy to the noble gases (Group 18) in chemistry, certain configuration of protons and neutrons are more stable than others, suggesting the presence of ``magic numbers.''  Based on empirical data, it was apparent that nuclides comprised of 2, 8, 20, 28, 50, 82, or 126 protons or neutrons are particularly stable.  This stability must arise from the nature of the nuclear potential.  The presence of the magic numbers 2, 8, and 20 suggested that the nuclear potential must have a shape somewhere in between that of a harmonic oscillator and a square well.  Fig.~\ref{magic_numbers} shows that both of these potentials are able to reproduce the first three magic numbers.  However, neither potential succeeds in predicting the positions of the larger magic numbers.  Therefore, the simplified description of the nuclear potential must be missing something.
+
+\begin{figure}%
+\centering
+\fbox{
+\includegraphics[width=\columnwidth,height=0.9\textheight,keepaspectratio]{numbers.eps}%
+%}
+%\fbox{
+\includegraphics[width=\columnwidth,height=0.9\textheight,keepaspectratio]{Kay_Thesis_23}%
+}
+\caption[Nuclear energy levels based on different potentials leading to the magic numbers]{Nuclear energy levels based on different potentials leading to the magic numbers.  The oscillator number is given at left.  Numbers in parentheses are the magic numbers predicted using the specified potential.  The circled numbers in the right column corresponding to the Woods-Saxon potential with a spin-orbit interaction are the nuclear magic numbers close to stability.  Figure modified from Ref.~\cite{Kay_2007}.}%
+\label{magic_numbers}%
+\end{figure}
+
+The shape of a potential that is between that of a harmonic oscillator and a square well is the Woods-Saxon potential
+\begin{equation}
+f(r,r_0,a)=\left[1+\exp \left(\frac{r-r_0}{a}\right)\right]^{-1} \qquad \textrm{Woods-Saxon}
+\label{eq:woods_saxon}
+\end{equation}
+where $r$ is the dependent variable (the radius), $r_0=RA^{1/3}$ is the nuclear radius; $R$ has a typical value of 1.25\,fm and $a$, the diffuseness parameter, is on the order of 1\,fm. 
+The fundamental shape of this potential is shown in Fig.~\ref{magic_numbers}; a function plot of this potential is given in Fig.~\ref{potentials}.  The degeneracy of each level produced by the Woods-Saxon potential and the square well, both central potentials, is $2(2\ell+1)$, where $\ell$ is the orbital angular momentum of the state.  Although the Woods-Saxon potential shifts the position of the energy levels relative to the finite square well, it still does not reproduce the magic numbers observed in experiment.
+
+\begin{figure}%
+\centering
+\includegraphics[width=\columnwidth,height=0.33\textheight,keepaspectratio]{potentials}%
+\caption[Functional plot of the Woods-Saxon potential]{Functional plot of the Woods-Saxon potential.  The volume potential $f(r)$ (Eq.~\ref{eq:woods_saxon}) and the surface-derivative potential $g(r)$ (Eq.~\ref{eq:surface}) are plotted.  The depth of the well has been selected to be 50\,MeV.  The dashed line indicates the nuclear radius $R=6.6$\,fm, corresponding to an $A=28$ nucleus.}%
+\label{potentials}%
+\end{figure}
+
+The breakthrough of Goeppert-Mayer and Jensen \textit{et al.} is the inclusion of the non-central nuclear spin-orbit potential.  %At the time, 
+The idea of spin-orbit coupling was already well-known in chemistry, arising from the electromagnetic interaction between a nucleus and an orbiting electron.
+  The general form of the nuclear spin-orbit potential is the same as the atomic spin-orbit potential.  However, empirically, the nuclear spin-orbit potential arises from the nucleon-nucleon interaction is of opposite sign and 20--30 times stronger than atomic spin orbit potential~\cite{Krane_1988,Satchler_1990}.  The nuclear potential is then rewritten as 
+\begin{equation}
+U(r)=-V f(r,R,a)+V_\mathrm{SO} \frac{1}{r} \frac{d}{dr} f(r,R,a) (\vec{\ell}\cdot\vec{s}) 
+\qquad \textrm{Thomas form}
+\label{eq:optical}
+\end{equation}
+where $V$ and $V_\mathrm{SO}$ are the depth of the volume and surface-peaked potentials, respectively. 
+ The depth of the volume potential $V$ is typically on the order of 50\,MeV.  With this new potential, each level with $\ell>0$ is split into two new levels.  For a given value of $\ell$, the $j=\ell+\frac{1}{2}$ state has lower energy, and the $j=\ell-\frac{1}{2}$ state has higher energy.  The energy difference is proportional to $\frac{1}{2}(2\ell+1)\hbar^2$.  Starting with the $n=3$ oscillator shell (2$p$1$f$), the highest angular momentum state is pushed down to energies comparable to the preceding oscillator shell (see Fig.~\ref{magic_numbers}). This is the interaction which correctly reproduces the observed magic numbers 28--126.
+
+The stable nuclei with closed proton and neutron shells, such as $^{40}$Ca and $^{208}$Pb, have been well understood within the context of the shell model for decades.  However, only recently has it been possible to study experimentally  exotic nuclei around the neutron-rich double shell closure of $Z=50$, $N=82$.  As such, the doubly-magic $^{132}$Sn nucleus is the subject of increasing attention in the nuclear physics community.  With the development of the Helical Orbit Spectrometer (HELIOS) and the Californium Rare Isotope Breeder Upgrade (CARIBU) at the ATLAS facility of Argonne National Laboratory, ground-breaking measurement opportunities are on the horizon.
+
+\input{r-process}
