@@ -1,0 +1,102 @@
+%\newenvironment{landscp}{%
+%%\addtolength{\hoffset}{-41pt}%
+%%\addtolength{\textwidth}{41pt}
+%%\thispagestyle{fancy} \cfoot{\hspace*{41pt}\thepage}
+%}{}
+%\begin{landscp}
+
+\chapter{HELIOS Runs}
+%\renewcommand\appendixname{\vspace{-41pt} Appendix}
+%\renewcommand\appendixname{Appendix}
+\label{runs}
+The table on the following pages provides a list of the individual beam times and experiments for HELIOS.  Each scheduled beam time (bt) appearing on the ATLAS Schedule is listed.  All information found on the published ATLAS beam schedules is given.  This includes the ATLAS experiment number, spokesperson, beam ion, beam energy, and beam current.  Where available, the ion source %and injector 
+is also listed as recorded in Paradox (accelerator run history).  The ECR sources correspond to the PII injector and the NIS source corresponds to the Tandem.  For beam time entries spanning more than one line, each different beam species or beam energy is given.
+
+For each experiment, the HELIOS-specific experiment number (\astrosun) is given, starting with one.  The HELIOS solenoid field is listed in terms of the solenoid current, where 1\,A corresponds to a 55.15\,g central field.    The data acquisition directory is also given.  On the original Music Cluster, the parent directory of the listed data directory is \verb|\net\helios|; on the updated Music Cluster, the parent directory is \verb|\music\helios|.  Starting with $^{136}$Xe experiment (1285), the data directory was named after the HELIOS-specific experiment number.  However, the triple alpha experiment (1355) was left out of the number sequence.  This was corrected for the $^{13}$B experiment (1357).  Therefore, there is no directory named \texttt{H011}.  Finally, for those experiments which have had their results published, the corresponding reference is given.
+%\newdateformat{listdate}{\twodigit{\THEMONTH}/\twodigit{\THEDAY}/\twodigit{\THEYEAR}}
+\begin{landscape}
+  \renewcommand{\arraystretch}{1} % set line spacing
+  \mmddyydate % set date format
+  \singlespace
+  \tablehead{
+    \hline	
+    bt &
+    \multicolumn{2}{c|}{Exp. No.}&Spokesman&\multicolumn{2}{c|}{Date}&
+    \multicolumn{2}{c}{Beam}&\multicolumn{1}{c}{Energy}&\multicolumn{1}{c|}{Current}&
+    Source&%Injector&
+    \multicolumn{1}{l}{Reaction}&\multicolumn{1}{c}{Field}&Directory&Ref.\\
+    &\astrosun%HELIOS
+    &ATLAS&%spokesman
+    &\multicolumn{1}{c}{Start}&\multicolumn{1}{c|}{Finish}&&&\multicolumn{1}{c}{(MeV)}&\multicolumn{1}{c|}{(pnA)}&&&\multicolumn{1}{c}{(A)}\\
+    \hline  \hline
+}
+
+%\tablehead{
+%  \textit{\ldots continued from previous page}\\
+%  \hline
+%1&2&3&4&5&6&7&8&9&10&11&12&13&14&15\\
+%    \hline  \hline
+%}
+%
+\tabletail{
+\hline
+%\textit{continuted on next page}\\
+}
+\bottomcaption[List of HELIOS beam time and experiments.]{List of HELIOS beam time and experiments.}
+
+\begin{center}
+\begin{supertabular}{r|c|l|l|ll|r@{}l..|l|,lll}
+1&\multirow{3}{*}{1}&\multirow{3}{*}{1198X}&\multirow{3}{*}{Lighthall}&\formatdate{8}{7}{2008}&\formatdate{8}{7}{2008}&$^{}$&&&&ECR2&&&&\multirow{3}{*}{\cite{Lighthall_2010}}\\
+2&&&&\formatdate{22}{7}{2008}&\formatdate{22}{7}{2008}&$^{}$&&&&ECR2&&&&\\\cline{5-13}
+3&&&&\formatdate{11}{8}{2008}&\formatdate{17}{8}{2008}&$^{28}$&Si&168&1&ECR2&^{28}\textrm{Sn}(d,p)^{29}\textrm{Sn}&363&Si28&\\ \hline
+4&\multirow{3}{*}{2}&1199X&\multirow{3}{*}{Lighthall}&\formatdate{15}{12}{2008}&\formatdate{19}{12}{2008}&$^{11}$&B&81&100&NIS&&&&\\%\hline
+\multirow{2}{*}{5}&&\multirow{2}{*}{1249X}&&\formatdate{2}{3}{2009}&\formatdate{7}{3}{2009}&$^{11}$&B&81&100&ECR2&^{11}\textrm{B}(d,p)^{12}\textrm{B}&189&B12&\cite{Schiffer_2010}\\
+&&&&\formatdate{7}{3}{2009}&\formatdate{14}{3}{2009}&$^{12}$&B&81&&in-flight&^{12}\textrm{B}(d,p)^{13}\textrm{B}&&&\\ \hline
+6&\multirow{2}{*}{3}&1270&\multirow{2}{*}{Lee}&\formatdate{24}{8}{2009}&\formatdate{28}{8}{2009}&$^{17}$&O&136&1&NIS&^{17}\textrm{O}(d,p)^{18}\textrm{O}&\multirow{2}{*}{518}&\multirow{2}{*}{C14}&\\
+7&&1270-2&&\formatdate{28}{8}{2009}&\formatdate{30}{8}{2009}&$^{14}$&C&84&1&NIS&^{14}\textrm{O}(^{6}\textrm{Li},d)^{18}\textrm{O}&&&\\ \hline
+\multirow{2}{*}{8}&\multirow{2}{*}{4}&\multirow{2}{*}{1277}&\multirow{2}{*}{Wuosmaa}&\formatdate{29}{8}{2009}&\formatdate{30}{8}{2009}&$^{14}$&C&133&100&NIS&^{14}\textrm{C}(d,p)^{15}\textrm{C}&\multirow{2}{*}{518}&\multirow{2}{*}{C14}&\multirow{2}{*}{\cite{Wuosmaa_2010}}\\
+&&&&\formatdate{30}{8}{2009}&\formatdate{5}{9}{2009}&$^{15}$&C&133&&ECR2&^{15}\textrm{C}(d,p)^{16}\textrm{C}&&&\\ \hline
+\multirow{2}{*}{9}&\multirow{5}{*}{5}&1285&\multirow{5}{*}{Kay}&\formatdate{28}{9}{2009}&\formatdate{29}{9}{2009}&$^{136}$&Xe&1306&\multirow{2}{*}{1}&ECR2&^{136}\textrm{Xe}(d,p)^{137}\textrm{Xe}&\multirow{2}{*}{379}&\multirow{2}{*}{H005/test}&\\
+&&1285&&\formatdate{29}{9}{2009}&\formatdate{29}{9}{2009}&$^{136}$&Xe&680&&ECR2&^{136}\textrm{Xe}(d,p)^{137}\textrm{Xe}&&&\\\cline{5-13}
+\multirow{2}{*}{10}&&1285-2&&\formatdate{2}{11}{2009}&\formatdate{6}{11}{2009}&$^{136}$&Xe&1306&0.1&ECR2&^{136}\textrm{Xe}(d,p)^{137}\textrm{Xe}&\multirow{2}{*}{379}&\multirow{2}{*}{H005/exp}&\cite{Kay_2011}\\
+&&1285-2&&\formatdate{6}{11}{2009}&\formatdate{6}{11}{2009}&$^{136}$&Xe&653&0.1&ECR2&^{136}\textrm{Xe}(d,p)^{137}\textrm{Xe}&&&\\\cline{5-13}
+11&&1285-2&&\formatdate{6}{11}{2009}&\formatdate{9}{11}{2009}&$^{130}$&Xe&1300&0.1&ECR2&^{130}\textrm{Xe}(d,p)^{131}\textrm{Xe}&&&\\ \hline
+12&6&1285-3&Kay&\formatdate{25}{2}{2010}&\formatdate{1}{3}{2010}&$^{86}$&Kr&860&0.1&NIS&^{86}\textrm{Kr}(d,p)^{87}\textrm{Kr}&379&H006/exp&\cite{Sharp_2013}\\ \hline
+13&3&1270-3&Lee&\formatdate{19}{3}{2010}&\formatdate{23}{3}{2010}&$^{14}$&C&112&1&NIS& &518&C14/mar10&\\ \hline
+14&7&1272&Shetty&\formatdate{6}{4}{2010}&\formatdate{15}{4}{2010}&$^{1}$&H&10.5&50&NIS&^{12}\textrm{C}(p,p^\prime)^{12}\textrm{C}&221.21&3alpha&\\ \hline
+\multirow{2}{*}{15}&\multirow{2}{*}{8}&\multirow{2}{*}{1327}&\multirow{2}{*}{Hoffman}&\formatdate{6}{7}{2010}&\formatdate{9}{7}{2010}&$^{18}$&O&145&100&NIS&^{18}\textrm{O}(d,p)^{19}\textrm{O}&\multirow{2}{*}{489.56}&\multirow{2}{*}{H007}&\\
+&&&&\formatdate{9}{7}{2010}&\formatdate{15}{7}{2010}&$^{19}$&O&145&&NIS&^{19}\textrm{O}(d,p)^{20}\textrm{O}&&&\\ \hline
+16&5&1285&Kay&\formatdate{30}{7}{2010}&\formatdate{2}{8}{2010}&$^{136}$&Xe&1360&0.1&ECR1&&181.32&H005a&\\ \hline
+\multirow{2}{*}{17}&\multirow{2}{*}{8}&\multirow{2}{*}{1327-2}&\multirow{2}{*}{Hoffman}&\formatdate{16}{9}{2010}&\formatdate{18}{9}{2010}&$^{18}$&O&145&100&NIS&^{18}\textrm{O}(d,p)^{19}\textrm{O}&&\multirow{2}{*}{H007a}&\multirow{2}{*}{\cite{Hoffman_2012}}\\
+&&&&\formatdate{18}{9}{2010}&\formatdate{23}{9}{2010}&$^{19}$&O&145&&NIS&^{19}\textrm{O}(d,p)^{20}\textrm{O}&&&\\ \hline
+18&7&1272-2&Shetty&\formatdate{25}{10}{2010}&\formatdate{26}{10}{2010}&$^{1}$&H&10.5&50&NIS&^{12}\textrm{C}(p,p^\prime)^{12}\textrm{C}&217.85&3alpha2&\\ \hline
+19&9&1340&Back&\formatdate{21}{3}{2011}&\formatdate{23}{3}{2011}&$^{122}$&Sn&1437.77&0.1&ECR2&(d,^3\textrm{He})&517&H008&\\ \hline
+\multirow{2}{*}{20}&\multirow{2}{*}{12}&\multirow{2}{*}{1341}&\multirow{2}{*}{Wuosmaa}&\formatdate{7}{4}{2011}&\formatdate{9}{4}{2011}&$^{14}$&C&240&5&NIS&&\multirow{2}{*}{{\color{white}00}0}&\multirow{2}{*}{beamdev/B13}&\\
+&&&&\formatdate{9}{4}{2011}&\formatdate{10}{4}{2011}&$^{15}$&C&240&&NIS&&&&\\ \hline
+21&10&1291-2&Rehm&\formatdate{23}{5}{2011}&\formatdate{25}{5}{2011}&$^{20}$&Ne&320&5&ECR2&&517&H009&\\ \hline
+22&11&1340-2&Back&\formatdate{14}{6}{2011}&\formatdate{20}{6}{2011}&$^{28}$&Si&391.94&0.1&NIS&^{28}\textrm{Si}(d,^3\textrm{He})^{27}\textrm{Al}&517&H010&\\ \hline
+23&7&1355&Shetty&\formatdate{18}{7}{2011}&\formatdate{26}{7}{2011}&$^{1}$&H&10.5&10&NIS&^{12}\textrm{C}(p,p^\prime)^{12}\textrm{C}&221.21&3alpha3&\\ \hline
+\multirow{3}{*}{24}&\multirow{3}{*}{12}&\multirow{3}{*}{1357}&\multirow{3}{*}{Wuosmaa}&\formatdate{15}{8}{2011}&\formatdate{17}{8}{2011}&$^{14}$&C&219&100&NIS&^{A}\textrm{X}(d,p)^{A+1}\textrm{X}&\multirow{3}{*}{518}&\multirow{3}{*}{H012\_B13}&\\
+&&&&\formatdate{17}{8}{2011}&\formatdate{21}{8}{2011}&$^{15}$&C&219&&NIS&^{A}\textrm{X}(d,p)^{A+1}\textrm{X}&&&\\
+&&&&\formatdate{21}{8}{2011}&\formatdate{22}{8}{2011}&$^{14}$&C&219&&NIS&^{A}\textrm{X}(d,p)^{A+1}\textrm{X}&&&\\ \hline
+25&13&1390&Hoffman&\formatdate{6}{10}{2011}&\formatdate{9}{10}{2011}&$^{18}$&O&264.82&&NIS&^{A}\textrm{X}(d,p)^{A+1}\textrm{X}&518&H013\_N17&\\ \hline
+26&12&1357&Wuosmaa&\formatdate{14}{11}{2011}&\formatdate{23}{11}{2011}&$^{14}$&C&270&100&NIS&^{A}\textrm{X}(d,p)^{A+1}\textrm{X}&&H012\_B13/Nov11&\\ \hline
+27&14&1372&Deibel&\formatdate{5}{12}{2011}&\formatdate{7}{12}{2011}&$^{27}$&Al&405&130&&&&H014\_Al27&\\ \hline
+\multirow{3}{*}{28}&\multirow{3}{*}{15}&\multirow{3}{*}{1433}&\multirow{3}{*}{Hoffman}&\formatdate{2}{2}{2012}&&$^{18}$&O&265&100&&^{18}\textrm{O}(d,p)^{19}\textrm{O}&518&\multirow{3}{*}{H015\_N17}&\multirow{3}{*}{\cite{Hoffman_2013}}\\ 
+&&&&&&$^{18}$&O&219.6&&&^{18}\textrm{O}(d,p)^{19}\textrm{O}&518\\
+&&&&&\formatdate{13}{3}{2012}&$^{17}$&N&231.2&&in-flight&^{17}\textrm{N}(d,p)^{18}\textrm{N}&518\\\hline
+29&---&1390X&Hoffman&\formatdate{2}{4}{2012}&\formatdate{3}{4}{2012}&$^{14}$&C&210&3&&&&\\ \hline
+\multirow{3}{*}{30}&\multirow{3}{*}{16}&\multirow{3}{*}{1324X}&\multirow{3}{*}{Thomas}&\formatdate{21}{5}{2012}&\formatdate{0}{1}{1900}&$^{}$&&&0.5&&&&\multirow{3}{*}{H016\_Ni58}&\\
+&&&&\formatdate{0}{1}{2012}&\formatdate{0}{1}{2012}&$^{}$&&&0.5&&&&\\
+&&&&\formatdate{0}{1}{2012}&\formatdate{25}{5}{2012}&$^{}$&&&0.5&&&&\\\hline
+\multirow{2}{*}{31}&\multirow{2}{*}{17}&\multirow{2}{*}{1442X}&\multirow{2}{*}{Hoffman}&\formatdate{18}{7}{2012}&\formatdate{22}{7}{2012}&$^{134}$&Xe&1072&1&&^{A}\textrm{X}(d,p)^{A+1}\textrm{X}&&\multirow{2}{*}{H017\_Xe134}&\\ 
+&&&&\formatdate{17}{7}{2012}&\formatdate{22}{7}{2012}&$^{98}$&Mo&&&&^{A}\textrm{X}(d,p)^{A+1}\textrm{X}&\\ \hline
+\multirow{2}{*}{32}&\multirow{2}{*}{18}&\multirow{2}{*}{1328-2}&\multirow{2}{*}{Bedoor}&\formatdate{20}{8}{2012}&&$^{14}$&C&240&80&NIS&^{9}\textrm{Be}(^{14}\textrm{C},^{13}\textrm{B})^{10}\textrm{B}&518&&\multirow{2}{*}{\cite{Bedoor_2013}}\\ 
+&&&&&\formatdate{27}{8}{2012}&$^{13}$&\textrm{B}&204&&in-flight&^{13}\textrm{B}(d,p)^{14}\textrm{B}\\
+\hline
+\end{supertabular}
+\end{center}
+
+
+%\end{landscp}
+\end{landscape}

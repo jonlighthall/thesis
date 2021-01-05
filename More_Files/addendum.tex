@@ -1,0 +1,232 @@
+%\singlespace
+%\pangram{80}
+%\noindent\rule{\textwidth}{1pt}\newpage
+%\doublespace
+%\pangram{40}
+%\noindent4rule{\textwidth}{1pt}\newpage
+%\begin{spacing}{2}
+%\pangram{40}
+%\end{spac4ng}
+%\noindent\rule{\textwidth}{1pt}\newpage
+\chapter{Corrigenda \& Addenda}
+\label{changes}
+\begin{spacing}{1.55}
+%\singlespace
+\newcommand{\code}[1]{{\color{note_gray}#1}}
+Table~\ref{history_table} shows the revision history of this document prior to publication by UMI \cite{Lighthall_2011}.  Given below is an exhaustive list of changes made to this document since June 2011 after being accepted by the Western Michigan University Graduate College.  Section~\ref{toclass} summarizes the changes related to adoption and development of the thesis template document class \texttt{wmu-thesis.cls}. Section~\ref{errors} lists any corrections, e.g., of typographical errors, 
+made to the text.  
+\begin{table}[ht]%
+ \mmddyydate % set date format
+\renewcommand{\arraystretch}{1.3} % set array line spacing
+\centering
+\begin{tabular}{ccllll}
+% Revision History ------------%-------------------------------
+\hline
+Draft&Format&Date&Submitted to&Chapters&Comments\\ \hline \hline
+0 &.tex&  \formatdate{15}{02}{09} &---&---&created\\
+1 &.pdf&  \formatdate{24}{08}{10} & AHW& all\\
+2 &.pdf&  \formatdate{19}{11}{10} & AHW& 7\\
+3 &.pdf&  \formatdate{14}{12}{10} & AHW& 5,7\\ 
+4 &.pdf&  \formatdate{02}{02}{10} & AHW& 5,7 \\
+5 &.pdf&  \formatdate{20}{02}{10} & AHW& 9 \\
+6 &.pdf&  \formatdate{14}{03}{10} & AHW& 14\\
+7 &.pdf&  \formatdate{22}{03}{10} & AHW& 10\\
+8 &.pdf&  \formatdate{30}{03}{10} & AHW& 12\\
+9 &.pdf&  \formatdate{03}{04}{10} & AHW& 11\\
+10 &.pdf&  \formatdate{05}{04}{10} & AHW& 16\\
+11 &.pdf&  \formatdate{22}{04}{10} & AHW& all\\
+12 &.pdf&  \formatdate{24}{04}{10} & AHW& 10,12,14\\
+13 &.pdf&  \formatdate{28}{04}{10} & AHW, BBB, DH, KK &all\\
+14 &.pdf&  \formatdate{30}{04}{10} & AHW, BBB, DH, KK& all&approved\\
+15 &.pdf&  \formatdate{27}{05}{10} & JWH&all\\
+16 &.pdf&  \formatdate{15}{06}{10} & JWH &all&accepted\\ \hline
+\end{tabular}
+\caption[Revision history pre-publication.]{Revision history pre-publication.  The file format and completion date of each revision is given.  The content of each draft is listed including who the draft was sumbitted to.}
+\label{history_table}
+\end{table}
+
+%Please email the author at \href{mailto:jonathan.c.lighthall@wmich.edu}{jonathan.c.lighthall@wmich.edu} to report any errors not listed there.
+Section~\ref{adds} lists any new content added to the document. 
+Items printed in \code{ gray} are code-level alterations affecting compiling and the resulting PDF output, but not the printed document.  In each section, changes are listed in the order they appear (with respect to the code).
+
+\section{Dissertation Template Class File}
+\label{toclass}
+In the accepted version of this document, certain aspects of the layout of the front matter and back matter were not in strict accord with the \textit{Guidelines} published by the Graduate College.  Those discrepancies are corrected in this document.  The layout modifications implemented in the accepted version of this document have subsequently been incorporated in a \LaTeX{} class file.
+\subsection{Layout and Formatting}
+\label{class_details}
+Listed below is a summary of changes to the layout and formatting of the document---as compared to the accepted version---made by the class file.  
+\begin{itemize}
+\setlength{\itemsep}{-4pt}	
+	\item The vertical spacing on the abstract and title pages is adjusted to meet requirements based on the printed output.  See note in \S\,\ref{orig}.
+	\item \code{Reference to two-column documents is removed.}
+	\item \verb|\voffset| is increased by the length \verb|\tocskip| in the front matter to position the headers.  
+	\item \code{In the absence of \texttt{abstract\_body.text}, instructions for the abstract are printed.}
+	\item The output of the optional command \verb|\draftno| is removed from the abstract.
+	\item \code{The degree abbreviation is set by a document class option, e.g. \texttt{[phd]}.}
+	\item \code{If the abstract spans two pages, the second page starts at the same position as the headers in the rest of the front matter.}
+	\item \code{The page number of the title page is changed to p.~i.}
+	\item \code{The command \texttt{\char`\\draftno} is added to the title (on the title page only).} See note in \S\,\ref{orig}.
+	\item \code{The project type and degree name are set by a document class option, e.g. \texttt{[phd]}.}
+	\item \code{The copyright page is unnumbered in the PDF.}
+	\item Headers of the form ``\textit{<Section>}---Continued'' are added to the front matter.  \code{ This correction requires the inclusion of  the \texttt{fancyhdr} package.}
+	\item After the copyright page, the front matter is enclosed in a new environment to reduce the \verb|\textheight| by \verb|\tocskip| without affecting the vertical spacing in the rest of the document.
+	\item The acknowledgments section heading is moved outside of the \texttt{singlespace} environment.  The vertical spacing of the heading is the same as other unnumbered chapters.  See note in \S\,\ref{orig}.
+	\item \code{The section headings in the front matter are raised by \texttt{\char`\\tocskip}.}
+		%\item \code{The \texttt{\char`\\aknoname} name declaration is moved from \texttt{ackn.tex} to \texttt{front\_matter.tex} (deprecated)}
+	\item \code{In the absence of \texttt{acknowledgments\_body.text}, instructions for the acknowledgments are printed.}
+	\item \code{A PDF bookmark for the Table of Contents is added.}
+	\item  The running page headers produced with the \verb|\pagestyle{headings}| command have been recreated within the context of the \texttt{fancyhdr} package.  The default behavior is no headers.  See notes in sections~\ref{adapt} and \ref{orig}.
+	\item Tables and figures in the appendices are removed from the List of Tables and List of Figures, respectively.  See note in \S\,\ref{orig}.
+	\item The command \verb|twoappendix| is added, which produces an appendix page.
+	\item The command \verb|oneappendix| is added.
+			\vspace{-4pt}
+			\begin{itemize}
+			\setlength{\itemsep}{-2pt}
+			\item The Table of Contents entry for the appendix chapter is APPENDIX.
+			\item The chapter letter is removed from the (single) chapter heading.
+			\item The chapter letter is removed from page headers.
+		\end{itemize}
+	\item Tab leaders are added to the first-level (chapter) entries in the Table of Contents.
+		
+\end{itemize}
+
+\subsection{Adaptations}
+\label{adapt}
+Required changes made to the original files to adapt the document to the new class are summarized below.  Of the original 31 \texttt{.tex} files used to compile the document, four files are modified (changes listed below), five files are omitted, and one file is added in the adoption of the class file.  This leaves a total of 27 \texttt{.tex }files.
+\begin{itemize}
+	\setlength{\itemsep}{-4pt}
+	\item The following changes were made to the parent (top-level) file \texttt{JC\_Lighthall\_Thesis.tex}.
+		\vspace{-4pt}
+		\begin{itemize}
+			\setlength{\itemsep}{-2pt}
+			\item The document class is changed from the \LaTeX{} standard \texttt{book.cls} class to \texttt{wmu-thesis.cls}, version~1.2.  The document class declaration is changed to
+				\begin{quote}
+					\begin{verbatim}
+						\documentclass[phd,abstract,ackno,listtab,listfig,orig]{wmu-thesis}
+					\end{verbatim}
+				\end{quote}%\vspace{4pt}
+		 	\item The command \verb|\VerbatimFootnotes| is omitted, as it causes footnote warnings from \verb|hyperref|.
+			\item The commands within the files \texttt{front\_matter.tex}, \texttt{abst.tex}, \texttt{titl.tex}, \texttt{copy.tex}, 
+			and \texttt{ackn.tex}, have been absorbed into \texttt{wmu-thesis.cls}.
+			\item The instances of the command \verb|\pagestyle{headings}| are omitted, replaced with
+				\begin{quote}
+					\verb|\lhead{\textsl{\leftmark}}|
+				\end{quote}
+		\end{itemize}
+	\item The body of the acknowledgments, previously found in \texttt{ackn.tex} is moved to \verb|abstract_body.tex|.
+	\item Commands in \texttt{first.tex} are updated as follows.
+		\vspace{-4pt}	
+		\begin{itemize}
+			\setlength{\itemsep}{-2pt}
+			\item All instances of \verb|\newcommand| are changed to \verb|\renewcommand|.
+			\item The command \verb|draftno| is removed from the argument of \verb|\thesistitle|.  The argument of the command \verb|\draftno| is preceded by \verb|\\| and followed by \verb|\vspace{-1.0\baselineskip}| to maintain vertical spacing on the title page.	(see note in \S\,\ref{class_details}). 
+			\item The commands \verb|\departmentname| and \verb|\adviname| are added.
+		\end{itemize}
+	\item The margin and spacing commands in \texttt{layout.tex} are commented out and moved to the class file.
+\end{itemize}
+
+\subsection{Exceptions}
+\label{orig}
+Listed below are the default features of the class file which are suppressed in this document to maintain consistency with the accepted version.  These changes are implemented with the document class option \texttt{[orig]}.
+\begin{itemize}
+	\setlength{\itemsep}{-4pt}
+	\item The vertical spacing on the abstract and title pages is preserved from the accepted version.  The vertical spacing is based on measurements using the ruler in Adobe Acrobat (as apposed to measuring the printed output).
+	\item The acknowledgments section heading is moved back inside the \texttt{singlespace} environment.  This change is made in order to constrain the acknowledgments section to one page and thus preserve the page numbering.
+	\item Running page headers are included.
+	\item The tables in the appendix are listed in the List of Tables.
+\end{itemize}
+
+\section{Corrections}
+%\subsection{Errata}
+\label{errors}
+Listed below are errors found in the accepted version of the document.  This list may be repeated at the end of the document in the form of an errata sheet to be included with the bound printed copies of the original document.  Please email the author at \href{mailto:lighthall@triumf.ca}{lighthall@triumf.ca} to report any errors not listed here.  Page numbers refer to the original text.  Repeated errors are tallied in gray.
+\begin{itemize}
+\setlength{\itemsep}{-4pt}	
+  \input{More_Files/errors_list}
+\end{itemize}
+
+\section{Additions}
+The following additions have been made to the document.  Some of the following entries may be considered ``corrections'' but are neither of the typographical type (listed in \S\,\ref{errors}), nor are they made for reasons of consistency (listed in \S\,\ref{orig}) or compliance (listed in \S\,\ref{class_details}).
+\label{adds}
+\begin{itemize}
+  \setlength{\itemsep}{-2pt}	
+  \makeatletter
+  \if@twoside
+  \item The document is formatted for two-sided printing.
+  \fi
+  \makeatother
+  \item p.~i---The document title includes ``\textit{---revised% and expanded
+	 ---}'' on the title page.
+	\item The command \verb|\texorpdfstring{\\}{ }| is used within the \verb|\thesistitle| command to produce a PDF-compatible document properties field.
+	%\vspace{-8pt}\\\vspace{-2pt}\noindent\rule{\linewidth}{0.5pt}
+  \item (Optional) This document was typeset with \texttt{mathdesign v1.55 [2006/01/29]}.  The size of the Adobe Utopia font has changed since \texttt{v1.55}.  The font package \texttt{fourier} may be used to reproduce the original Utopia font, however, some spacing will be altered from the original.
+	\vspace{-4pt}	
+		\begin{itemize}
+			\item The packages \texttt{amssymb} and \texttt{mathrsfs} must be used with \texttt{fourier}
+			\item The following code is added to restore the default \texttt{mathdesign} superscript size.
+			\begin{quote}
+			\begin{singlespace}
+			\begin{verbatim}
+			\makeatletter
+		\DeclareMathSizes{\@xpt}{\@xpt}{7}{5}
+\makeatother
+			\end{verbatim}
+			\end{singlespace}
+			\end{quote}
+			
+		\end{itemize}
+	\item \code{Handling for black and white graphics is changed.  Multiple graphics paths are removed.  Black and white graphics are selected by including the declare graphics extension rule}
+	  \begin{quote}
+      \texttt{\char`\\DeclareGraphicsExtensions\{\_bw.eps,.eps\}}.
+    \end{quote}
+  \item The graphics path \texttt{../NIM\_Paper/Figures/} is removed.  The commands including the six figures from Ref.~\cite{Lighthall_2010} (see Appendix~\ref{fig_notes}) now use a relative path name.
+		\vspace{-4pt}	
+		\begin{itemize}
+			\item p.~\pageref{solenoid}---The path to the NIM directory is added (\verb|HELIOS_Concept.tex|).
+			\item p.~\pageref{schematic}---The path to the NIM directory is added (\verb|Solenoid.tex|).
+		\end{itemize}
+	\item The PDF description title is set to \verb|\thesistitle|.
+	\item \code{ Default opening page is changed to p.~i (the title page) instead of p.~48 (p.~62 absolute).}	
+	\item The package \texttt{tocloft} is not used; this lowers the contents headings to their default position.  The command \texttt{\char`\\setlength\{\char`\\cftfignumwidth\}\{3em\}} is also removed; this changes the horizontal spacing between the figure number and the caption in the List of Figures.
+	\item \code{The packages \texttt{makeindex} and \texttt{lineno} are omitted.}
+	\item \code{The text-generating macro definitions are moved to \texttt{autotext.tex}.}
+%	\vspace{-0.7\baselineskip}\\\vspace{-0.3\baselineskip}\noindent\rule{\linewidth}{0.5pt}
+	\item The References section is moved before Appendix~\ref{field_map_data}.
+	\item The bibliographic entry for Ref.~\cite{Kay_2011} is updated to reflect publication.
+	\item The colophon is moved from the end of the document \code{(\texttt{last.tex})} to the end of the References section \code{(\texttt{back\_matter.tex})} to preserve the total number of pages (when the additional appendices are omitted).
+	\item The colophon is edited.
+		\vspace{-4pt}	
+	  \begin{itemize}
+	  \setlength{\itemsep}{-2pt}
+	  	\item p.~\pageref{colo}---\code{The subsection title is moved inside the table environment and the reference label is changed.}
+			\item p.~\pageref{colo}---Math, hardware, and OS information added to the Colophon.  The table is forced centered.
+		\end{itemize}
+	\item p.~\pageref{changes}---This appendix chapter is added.
+	 \vspace{-4pt}	
+	  \begin{itemize}
+	  \setlength{\itemsep}{-2pt}
+	    \item The command \verb|\twoappendix| is used.
+	    \item p.~\pageref{field_map_data}---\code{The optional arguments of the \texttt{\char`\\chapter} command are omitted.}
+	    %\item The spacing in the Table of Contents is compressed to preserve the page numbering of the front matter and main matter.
+    \end{itemize}
+    \item p.~\pageref{fig_notes}---An afterword is added as Appendix~\ref{fig_notes}.
+		\item p.~\pageref{runs}---A list of HELIOS experiments is added as Appendix~\ref{runs}.  \code{Due to the layout of the table, the following packages are also included: \texttt{supertabular}, \texttt{rotating}, \texttt{pdflscape}}
+	\item p.~\pageref{sim_man}---A guide to HELIOS \texttt{C++} simulations is added as Appendix~\ref{sim_man}. 
+		
+		%\item p.~\pageref{cal_man}---A guide to calibration is added as Appendix~\ref{cal_man}.
+	
+	
+	\item \code{The commands generating the time stamp have been moved to \texttt{time\_stamp.tex}}
+	\item The time-stamp is printed in an environment which is wider than \verb|\textwidth| by twice the \verb|\marginparwidth| to accommodate longer month names and a space is added after the time.
+	\item \code{Back matter comments---provisions for a glossary and index---are moved to \texttt{back\_matter.tex}}
+
+\end{itemize}
+\end{spacing}
+%\clearpage 
+%\phantomsection
+%\pdfbookmark[0]{Table of Contents}{Table of Contents2}
+%\chapter*{Table of Contents}
+%\clearpage 
+%\phantomsection
+%\pdfbookmark[0]{Acknowledgments}{Acknowledgments2}
+%\chapter*{Acknowledgments}
