@@ -41,32 +41,35 @@
 \usepackage[normalem]{ulem}%for strikethroughs
 
 %% Figure packages---------------%-------------------------------
+\usepackage{graphicx}
+
+\usepackage{ifpdf}
+\ifpdf
+        %% PDFTeX primitives
+        %\pdfcompresslevel=9 
+        %\pdfimageresolution=10
+	\pdfminorversion=7 %PDF version compatibility
+	%% EPS to PDF settings
+        %  In previous versions of epstopdf, it was required to specify the .eps conversion
+        %  rules. Now those commands destroy both the original .eps file and the .pdf output. It
+        %  used to be that in order for these commands to work, the tag -enable-write18 had to be
+        %  included in command line arguments to make PDF figures (deprecated).
+        \usepackage[update]{epstopdf}
+        %\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+	%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
+        %\epstopdfsetup{suffix=-\SourceExt-converted-to}%This line explicitly defines the default behavior
+        \epstopdfsetup{suffix=}%
+\else
+\usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
+\fi
+%% File names and directories
 %  The following lines of code assume that the graphics files are .eps files located in a
 %  directory named Figures.  Black and white versions of color graphics files end in _bw.  For
 %  example, the two files
 %			/Figures/foo.eps
 %			/Figures/foo_bw.eps
 %  may be included with a single command, e.g., \includegraphics{foo}.  The black and white
-%  figures are then selected by uncommenting the declare graphics extension rule below. In 
-%  previous versions of epstopdf, it was required to specify the .eps conversion rules. Now those
-%  commands destroy both the original .eps file and the .pdf output. It used to be that in order
-%  for these commands to work, the tag -enable-write18 had to be included in command line 
-%  arguments to make PDF figures (deprecated)
-
-\usepackage{ifpdf}
-\ifpdf
-	\usepackage{graphicx}
-	\usepackage[update]{epstopdf}
-	%\pdfimageresolution=10
-	%\pdfcompresslevel=9 
-	%\epstopdfDeclareGraphicsRule{.eps}{pdf}{.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-	%\epstopdfDeclareGraphicsRule{_bw.eps}{pdf}{_bw.pdf}{ps2pdf -dEPSCrop #1 \OutputFile}
-        %\epstopdfsetup{suffix=-\SourceExt-converted-to}%This line explicitly defines the default behavior
-        \epstopdfsetup{suffix=}%
-\else
-\usepackage{graphicx}	
-\usepackage[all,light]{draftcopy}% Places "DRAFT" on each page.  Only works with PS output.	
-\fi
+%  figures are then selected by uncommenting the declare graphics extension rule below.
 %\DeclareGraphicsExtensions{_bw.eps,.eps}	%Turn on/off BW figures, assumes BW figures end in _bw.eps
 %\graphicspath{{Figures/}}%set graphics path(s) here
 \graphicspath{{Figures/}{../Figures/BW_Figures/}{../Figures/}} %Uniquely-named B&W figures
@@ -97,15 +100,14 @@
 %% Formatting packages-----------%-------------------------------
 \usepackage{fancyhdr} %required for non-standard (fancy) headers
 \usepackage{fancyvrb}%allows verbatim in footnotes
-% Linux-like command prompt "$" 
-\def \vsetlinux [#1]{\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}#1}}
-% DOS-like command prompt
-\def \vsetdos [#1]{\renewcommand{\FancyVerbFormatLine}{{\color{blue}\texttt{C:\char`\\ >} }}}
-% ROOT-like command prompt
-\def \vsetroot [#1]{\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [\arabic{FancyVerbLine}] }#1}}
-%reset
-\def \vsetnone [#1]{\renewcommand{\FancyVerbFormatLine}[1]{#1}}
-
+%  Linux-like command prompt "$" 
+\newcommand{\vsetlinux}{\renewcommand{\FancyVerbFormatLine}[1]{{{\color{green} \$ }}##1}}
+%  DOS-like command prompt
+\newcommand{\vsetdos}{\renewcommand{\FancyVerbFormatLine}{{\color{blue}\texttt{C:\char`\\ >} }}}
+%  ROOT-like command prompt
+\newcommand{\vsetroot}{\renewcommand{\FancyVerbFormatLine}[1]{{\color{blue}root [\ifthenelse{\value{FancyVerbLine} = 0}{$\emptyset$}{\arabic{FancyVerbLine}}] }##1}}
+%  reset Verbatim
+\newcommand{\vsetnone}{\renewcommand{\FancyVerbFormatLine}[1]{##1}}
 \usepackage{indentfirst}%indents first paragraph of each section
 \usepackage[pagewise]{lineno} %prints line numbers with the command \linenumbers
 
@@ -186,39 +188,57 @@ citecolor=black,               %makes citation links black (instead of green)
 
 %% Set the specific formatting of the "Mev per nucleon" units symbol
 \newcommand{\AMeV}{A\,MeV}
+\renewcommand{\AMeV}{AMeV}
 %\renewcommand{\AMeV}{MeV/u}
 %\renewcommand{\AMeV}{MeV/A}
 \renewcommand{\AMeV}{MeV/$u$}
+%\renewcommand{\AMeV}{MeV/nucleon} %new standard
 
 %  Load autotext, an collection of automatic text-generating macros
-\InputIfFileExists{src/autotext}{}{} 
-\InputIfFileExists{../src/autotext}{}{} 
+\InputIfFileExists{src/autotext}{}{%
+\InputIfFileExists{../src/autotext}{}{%
+\InputIfFileExists{../../src/autotext}{}{}}} 
 
 %\renewcommand{\thefootnote}{\fnsymbol{footnote}} %sets footnote marks to symbols
 
 %% Date settings-----------------%-------------------------------
 \usepackage{fmtcount,datetime} %provides commands for displaying times and dates
-\newdateformat{photodate}{\shortmonthname[\THEMONTH].~\THEYEAR}
+\newdateformat{photodate}{\shortmonthname[\THEMONTH]~\THEYEAR}
 \newdateformat{longusdate}{%standard long date format
 \dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \monthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
+\newdateformat{shortusdate}{%standard short date format
+\shortdayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR}, \shortmonthname[\THEMONTH] \ordinal{DAY}, \THEYEAR}
+
 %  Time zone definitions, for the command \timezone.
+% Requires latexmkrc file on Overleaf
 \makeatletter
-\@namedef{timezone-0400}{EDT}
-\@namedef{timezone-0500}{EST}
-\@namedef{timezone-0600}{CST}
-\@namedef{timezone-0500}{CDT}
-\@namedef{timezone-0700}{PDT}
-\@namedef{timezone-0800}{PST}
+\newif\ifdst
+% set daylight saving time
+\dsttrue
+% set time zone names
+\ifdst
+  \@namedef{timezone-0400}{EDT}
+  \@namedef{timezone-0500}{CDT}
+  \@namedef{timezone-0600}{MDT}
+  \@namedef{timezone-0700}{PDT}
+\else
+  \@namedef{timezone-0500}{EST}
+  \@namedef{timezone-0600}{CST}
+  \@namedef{timezone-0700}{MST}
+  \@namedef{timezone-0800}{PST}
+\fi
 
 \def\grabtimezone #1#2#3#4#5#6#7#8#9{\grabtimezoneB}
 \def\grabtimezoneB #1#2#3#4#5#6#7{\grabtimezoneC}
 \def\grabtimezoneC #1#2'#3'{%
-\@ifundefined{timezone#1#2#3}
-{No timezone for `#1#2#3'}
-{\@nameuse{timezone#1#2#3}}%
+  \@ifundefined{timezone#1#2#3}
+    {No timezone for `#1#2#3'}
+    {\@nameuse{timezone#1#2#3}}%
 }
 \def\timezone{\expandafter\grabtimezone\pdfcreationdate}% called with \timezone.
 \makeatother
+
+\newcommand{\smalltimestamp}{Updated \shortusdate\today{} \currenttime{} \timezone.}
 
 %% --------------------------------------------------------------
 %% Layout Options----------------%-------------------------------
@@ -246,8 +266,6 @@ citecolor=black,               %makes citation links black (instead of green)
 
 %% Double-sided------------------%-------------------------------
 %  For double-sided documents, include the document class option [twoside].
-%  To allow chapters to open on even pages (to preserve pagination), include the document class 
-%  option [openany].
 %  For double-sided documents with narrow margins, set margins below.  These margin settings 
 %  leave the odd-page margins unchanged while increasing the even-page left-hand margins by 
 %  0.5 inches so that the margins are the same on both sides of the page.
@@ -271,3 +289,9 @@ citecolor=black,               %makes citation links black (instead of green)
 \setlength{\parsep}{\parskip}%
 }%\centering%
 \item[]}{\end{list}}
+
+\newcommand{\curl}[1]{%
+\begin{center}
+	\url{#1}
+\end{center}
+}
