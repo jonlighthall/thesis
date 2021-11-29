@@ -79,6 +79,7 @@ At the time of compiling, today is \longusdate\today{} and the current time is \
 \item[]}{\end{list}}
 \begin{singlespace}
     \begin{center}
+\vspace{-2\baselineskip}
         \rule[0 pt]{\linewidth}{0.5pt}\\	
         \textit{(end of document)}\\
         \vspace*{\fill}
@@ -101,4 +102,14 @@ At the time of compiling, today is \longusdate\today{} and the current time is \
 \end{singlespace}
 %\marginpar{\color{white}\texttt{J/\textbackslash C\textbar\textless @L}}
 %}
+}
+
+\newcommand{\terminaltimestamps}{
+\singlespace
+\centering
+\setlength{\parindent}{0pt}
+\rule[0 pt]{\linewidth}{0.125pt}
+\textit{(end of document)}
+\vspace*{\fill}
+\\\timestamp
 }
