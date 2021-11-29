@@ -34,6 +34,9 @@
 %\addcontentsline{toc}{chapter}{\indexname}
 %\printindex
 
+%\input{More_Files/layout_table}
+
+\AtEndDocument{
+\terminaltimestamp    
 \include{More_Files/errata}
-\input{More_Files/layout_table}
-\input{src/time_stamp}
+}
