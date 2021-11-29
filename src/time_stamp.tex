@@ -59,7 +59,7 @@ At the time of compiling, today is \longusdate\today{} and the current time is \
 \timezone.%
 }
 % The following command may be used on its own or use within \AtEndDocument{}
-\newcommand{\terminaltimestamp}{%
+\newcommand{\terminaltimestamp}[1][0pt]{%
 %\AtEndDocument{
 %% The need to include one of the following two lines may be system dependent.
 %\pagebreak % use if float(s) on last page 
@@ -82,6 +82,7 @@ At the time of compiling, today is \longusdate\today{} and the current time is \
 \vspace{-2\baselineskip}
         \rule[0 pt]{\linewidth}{0.5pt}\\	
         \textit{(end of document)}\\
+        \vspace{#1}
         \vspace*{\fill}
 %\vspace*{\stretch{1}}
 %\begin{figure*}[h]%
