@@ -9,10 +9,24 @@
 %\renewcommand\appendixname{\vspace{-41pt} Appendix}
 %\renewcommand\appendixname{Appendix}
 \label{runs}
-The table on the following pages provides a list of the individual beam times and experiments for HELIOS.  Each scheduled beam time (bt) appearing on the ATLAS Schedule is listed.  All information found on the published ATLAS beam schedules is given.  This includes the ATLAS experiment number, spokesperson, beam ion, beam energy, and beam current.  Where available, the ion source %and injector 
-is also listed as recorded in Paradox (accelerator run history).  The ECR sources correspond to the PII injector and the NIS source corresponds to the Tandem.  For beam time entries spanning more than one line, each different beam species or beam energy is given.
+The table on the following pages provides a list of the individual beam times and experiments for HELIOS.
+Each scheduled beam time (bt) appearing on the ATLAS Schedule is listed.
+For beam time entries spanning more than one line, each different beam species or beam energy is given.
+All information found on the published ATLAS beam schedules is listed.
+This includes the ATLAS experiment number, spokesperson, beam ion, beam energy, and beam current.
+Where available, the ion source %and injector 
+is listed as recorded in Paradox, the accelerator run log.
+The electron cyclotron resonance (ECR) sources correspond to the positive ion injector (PII), and the negative ion source (NIS) corresponds to the Tandem Van de Graaff accelerator.
 
-For each experiment, the HELIOS-specific experiment number (\astrosun) is given, starting with one.  The HELIOS solenoid field is listed in terms of the solenoid current, where 1\,A corresponds to a 55.15\,g central field.    The data acquisition directory is also given.  On the original Music Cluster, the parent directory of the listed data directory is \verb|\net\helios|; on the updated Music Cluster, the parent directory is \verb|\music\helios|.  Starting with $^{136}$Xe experiment (1285), the data directory was named after the HELIOS-specific experiment number.  However, the triple alpha experiment (1355) was left out of the number sequence.  This was corrected for the $^{13}$B experiment (1357).  Therefore, there is no directory named \texttt{H011}.  Finally, for those experiments which have had their results published, the corresponding reference is given.
+For each experiment, the HELIOS-specific experiment number (\astrosun) is given, starting with one.
+Starting with $^{136}$Xe experiment (1285), the data directory was named after the HELIOS-specific experiment number.
+However, the triple alpha experiment (1355) was left out of the number sequence.
+This was corrected for the $^{13}$B experiment (1357).
+Therefore, there is no directory named \texttt{H011}.
+The data acquisition directory name is listed.
+On the original Music Cluster, the parent directory of the listed data directory is \verb|\net\helios|; on the updated Music Cluster, the parent directory is \verb|\music\helios|.
+The HELIOS solenoid field is listed in terms of the solenoid current, where 1\,A corresponds to a 55.15\,G central field.
+Finally, for those experiments which have had their results published, the corresponding reference is given.
 %\newdateformat{listdate}{\twodigit{\THEMONTH}/\twodigit{\THEDAY}/\twodigit{\THEYEAR}}
 \begin{landscape}
   \renewcommand{\arraystretch}{1} % set line spacing
@@ -24,7 +38,7 @@ For each experiment, the HELIOS-specific experiment number (\astrosun) is given,
     \multicolumn{2}{c|}{Exp. No.}&Spokesman&\multicolumn{2}{c|}{Date}&
     \multicolumn{2}{c}{Beam}&\multicolumn{1}{c}{Energy}&\multicolumn{1}{c|}{Current}&
     Source&%Injector&
-    \multicolumn{1}{l}{Reaction}&\multicolumn{1}{c}{Field}&Directory&Ref.\\
+    \multicolumn{1}{c}{Reaction}&\multicolumn{1}{c}{Field}&Directory&Ref.\\
     &\astrosun%HELIOS
     &ATLAS&%spokesman
     &\multicolumn{1}{c}{Start}&\multicolumn{1}{c|}{Finish}&&&\multicolumn{1}{c}{(MeV)}&\multicolumn{1}{c|}{(pnA)}&&&\multicolumn{1}{c}{(A)}\\
