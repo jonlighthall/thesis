@@ -773,8 +773,8 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 \clearpage
 \phantomsection
 \pdfbookmark[0]{\contentsname}{\contentsname}
-\chead{\contentsname---Continued}
 \let\contname\contentsname
+\chead{\contname---Continued}
 \renewcommand \contentsname{\vspace{-\tocskip}\contname}
 \if@orig
 %\begin{spacing}{\tocspace} %set single spacing in TOC
@@ -787,8 +787,8 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 %% List of Tables----------------%-------------------------------
 \cleardoublepage
 \phantomsection
-\chead{\listtablename---Continued}
 \let\listtname\listtablename
+\chead{\listtname---Continued}
 \renewcommand \listtablename{\vspace{-\tocskip}\listtname}
 \addcontentsline{toc}{chapter}{\texorpdfstring{\uppercase{\listtname}}{\listtname}}
 \listoftables
@@ -798,8 +798,8 @@ tactfully. It is best practice to secure permission of those to be cited in ackn
 %% List of Figures---------------%-------------------------------
 \cleardoublepage
 \phantomsection
-\chead{\listfigurename---Continued}
 \let\listfname\listfigurename
+\chead{\listfname---Continued}
 \renewcommand \listfigurename{\vspace{-\tocskip}\listfname}
 \addcontentsline{toc}{chapter}{\texorpdfstring{\uppercase{\listfname}}{\listfname}}
 \listoffigures
