@@ -11,12 +11,13 @@
 
 \usepackage{tikz}
 % Inverted pentagram inscribed in a circle (Sigil-of-Baphomet silhouette).
+% Sized to cap-height: sits on the text baseline, top aligns with capital letters.
 \newcommand{\sigil}{%
-  \tikz[baseline=-0.6ex]{%
-    \draw[line width=0.4pt] (0,0) circle (0.62em);
-    \draw[line width=0.4pt]
-      (270:0.6em) -- (54:0.6em) -- (198:0.6em) --
-      (342:0.6em) -- (126:0.6em) -- cycle;}%
+  \tikz[baseline=-0.34em]{%
+    \draw[line width=0.3pt] (0,0) circle (0.36em);
+    \draw[line width=0.3pt]
+      (270:0.34em) -- (54:0.34em) -- (198:0.34em) --
+      (342:0.34em) -- (126:0.34em) -- cycle;}%
 }
  
 %% The following two lines may be required for proper formatting of the Table of Figures
